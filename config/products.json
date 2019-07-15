@@ -1,0 +1,46 @@
+
+[{
+    "id":1,
+    "name":"iphone-6s",
+    "description": "GSM Unlocked, 64GB - Space Grey",
+    "price": "499.99",
+    "currency": "CAD",
+    "image": "",
+    "isChecked": false
+},
+{
+    "id":2,
+    "name":"iphone-XS",
+    "description": "GSM Unlocked, 32GB - Silver",
+    "price": "399.99",
+    "currency": "CAD",
+    "image": "",
+    "isChecked": false
+},
+{"id":3,
+    "name":"iphone-7s",
+    "description": "",
+    "price": "599.99",
+    "currency": "CAD",
+    "image": "GSM Unlocked, 64GB - Rose gold",
+    "isChecked": false
+},
+{
+    "id":4,
+    "name":"iphone-6s plus",
+    "description": "GSM Unlocked, 64GB - Space Grey",
+    "price": "599.99",
+    "currency": "CAD",
+    "image": "",
+    "isChecked": false
+},
+{
+    "id":5,
+    "name":"iphone-7s plus",
+    "description": "GSM Unlocked, 64GB - Grey",
+    "price": "599.99",
+    "currency": "CAD",
+    "image": "",
+    "isChecked": false
+}
+]

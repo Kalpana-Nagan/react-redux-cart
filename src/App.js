@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import Router from './Router';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="Home">
+        <div className="page-header  bg-light font-small blue text-center text-primary" >
+           <h1>Manage Items</h1>
+       </div>
+          <Router />
+        <footer className="page-footer font-small blue">
+        <div className="footer-copyright text-center py-3 bg-light text-primary">© 2019 Copyright</div>
+      </footer>
+      </div>
     </div>
   );
 }

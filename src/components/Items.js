@@ -32,7 +32,7 @@ class Items extends Component {
         return(
             <div>
                 <Checkout />
-                <br/>
+                &nbsp; &nbsp;
                 <SaveForLater/>
                 <div>
                     <br/>

@@ -4,6 +4,13 @@ import * as productActions from "../redux/actions/productActions";
 import propTypes from 'prop-types';
 import Item from "./Item";
 
+const gridouter = {
+	padding : '10px',
+}
+
+const buttons = {
+	padding : '10px',
+}
 class SaveForLater extends Component {
 	isChecked = false;
     state = {
@@ -14,93 +21,48 @@ class SaveForLater extends Component {
     }
     
 	handleCheckElement = (event) =>  {
-		let productList =  this.props.products.watchList;
+		let products = this.props.products ;
+		products.checkedItem = parseInt(event.target.value);
 
-		productList.forEach(product => {
-			if (parseInt(product.id) === parseInt(event.target.value)){
-				product.isChecked = true;
-			}
-		});
-		const products = {
-			watchList : productList,
-			checkOut : this.props.products.checkOut
-        }
-        this.isChecked = productList.filter(product=>product.isChecked).length === productList.length;
-        
-		this.props.dispatch(productActions.createProduct(products));
+		this.props.dispatch(productActions.updateSaveForLaterChecked(products));
 	}
 
 	handleDelete = (event) => {
-		let productList =  this.props.products.watchList;
-
-		productList = productList.filter((product)=>{
-			return !product.isChecked;
-		});
-        const products = {
-            watchList : productList,
-            checkOut : this.props.products.checkOut
-        }
-        this.isChecked = false;
-		this.props.dispatch(productActions.createProduct(products));
+		this.props.dispatch(productActions.deleteSaveForLater(this.props.products));
 	}
 
 	handleCheckout = (event) => {
-		let checkOutProducts = this.props.products.checkOut ;
-		let watchListProducts = this.props.products.watchList ;
-
-		let newCheckOutProducts = watchListProducts.filter((product)=>{
-			return product.isChecked;
-        });
-        
-		watchListProducts = watchListProducts.filter((product)=>{
-			return !product.isChecked;
-		});
-
-		newCheckOutProducts.forEach(product=>{
-			product.isChecked = false;	
-		});
-
-        checkOutProducts = checkOutProducts.concat(newCheckOutProducts);
-        
-        const products = {
-			checkOut : checkOutProducts,
-			watchList : watchListProducts
-		}
-
-		this.props.dispatch(productActions.createProduct(products));
+		this.props.dispatch(productActions.updateSaveForLater(this.props.products));
 	}
 
 	handleCheckAll = (event) => {
-		const isChecked = !this.isChecked;
-		this.isChecked = isChecked;
+		let isChecked = this.props.products.watchList.filter(
+			product=>product.isChecked).length === this.props.products.watchList.length;
 		
-		let watchListProducts = this.props.products.watchList ;
-		watchListProducts.forEach(product=>{
-			product.isChecked = isChecked;	
-		});
-		const products = {
-			checkOut : this.props.products.checkOut,
-			watchList : watchListProducts
-		}
-		this.props.dispatch(productActions.createProduct(products));
+		let products = this.props.products;
+		products.isChecked = !isChecked;
+
+		this.props.dispatch(productActions.updateSaveForLaterCheckAll(products));
 	}
 
 	render(){
 		const productList = this.props.products.watchList; 
-		return (<div className="">
+		let isChecked  = (productList && productList.filter(product=>product.isChecked).length === productList.length) || false;
+
+		return (<div>
 			<h2>Saved For Later</h2> 
-				<div className="">
-					<div className="row ">
+				<div style={gridouter} className="grid1 border">
+					<div className="row border-bottom">
 						<div className="col-1">
-							<input onChange={this.handleCheckAll} checked={this.isChecked}  type="checkbox" id="checkItem"></input>
+							<input onChange={this.handleCheckAll} checked={isChecked}  type="checkbox" id="checkItem"></input>
 						</div>
-						<div className="col-4">
+						<div className="col-4 font-weight-bold">
 							Product
 						</div>
-						<div className="col-4">
+						<div className="col-4 font-weight-bold">
 							Description
 						</div>
-						<div className="col-3 ">
+						<div className="col-3 font-weight-bold">
 							Price
 						</div>
 					</div>
@@ -123,12 +85,14 @@ class SaveForLater extends Component {
 						</div>)
 						})
 					}   
-				</div>
-				<hr/>
-				<div>
-					<span><button onClick = {this.handleDelete} className="btn btn-primary"> Delete </button></span> &nbsp;&nbsp;
+				
+				
+				<div style={buttons}>
+					<span><button onClick = {this.handleDelete} className="btn btn-secondary"> Delete </button></span> &nbsp;&nbsp;
 					<span><button onClick = {this.handleCheckout} className="btn btn-primary"> Move to checkout </button></span>
-
+					
+				</div>
+				
 				</div>
 		</div>)
 	}

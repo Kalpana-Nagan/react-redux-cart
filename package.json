@@ -2,7 +2,7 @@
   "name": "react-basket",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kalpananagan.github.io/react-redux-cart",
+  "homepage": "https://kalpana-nagan.github.io/react-redux-cart",
   "dependencies": {
     "bootstrap": "4.3.1",
     "gh-pages": "^2.0.1",
